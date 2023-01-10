@@ -1,0 +1,18 @@
+<mat-toolbar role="banner">
+  <img
+    width="30"
+    alt="Andersondfm Logo"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg"
+  />
+  <button mat-button routerLink="">Home</button>
+  <button mat-button [matMenuTriggerFor]="prod">Produtos</button>
+  <mat-menu #prod="matMenu">
+    <button mat-menu-item routerLink="produtos">Lista de Produtos</button>
+  </mat-menu>
+</mat-toolbar>
+<router-outlet></router-outlet>
+<div class="content" role="main">
+  <footer>Develop for Andersondfm 2022</footer>
+</div>
+
+

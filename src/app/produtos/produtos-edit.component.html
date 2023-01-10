@@ -1,0 +1,50 @@
+<div class="produto-edit">
+  <br>
+  <h1>{{title}}</h1>
+  <p *ngIf="this.id && !produtos"><em>Carregando...</em></p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <p>
+      <mat-error *ngIf="form.invalid && form.hasError('isDupeCity')">
+        <strong>ERROR</strong>:
+        Existe uma duplicidade.
+      </mat-error>
+    </p>
+
+    <mat-form-field>
+      <mat-label>Nome:</mat-label>
+      <input matInput formControlName="nome" placeholder="Digite o nome do produto">
+      <mat-error *ngFor="let error of getErrors(form.get('nome')!,
+             'O nome.')">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Data:</mat-label>
+      <input matInput formControlName="dataInclusao" placeholder="Inseri uma Data">
+      <mat-error *ngFor="let error of getErrors(form.get('dataInclusao')!,
+             'A Data de Inclusao')">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Usuario:</mat-label>
+      <input matInput formControlName="usuarioInclusao" placeholder="Inserir um Usuario">
+      <mat-error *ngFor="let error of getErrors(form.get('usuarioInclusao')!,
+             'O Usuário de Inclusao')">
+        {{error}}
+      </mat-error>
+    </mat-form-field>
+
+    <div>
+      <button type="submit" mat-flat-button color="primary" type="submit" [disabled]="!form.valid">
+        {{ this.id ? "Salvar" : "Cadastrar" }}
+      </button>
+      <button type="submit" mat-flat-button color="secondary" [routerLink]="['/produtos']">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

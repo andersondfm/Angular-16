@@ -1,0 +1,59 @@
+<br>
+
+<p *ngIf="!produtos"><em>Carregando...</em></p>
+
+<button mat-flat-button color="primary"
+  class="btn-add" [routerLink]="['/produto']">
+ Adicionar Produto
+</button>
+
+<br>
+
+<mat-form-field [hidden]="!produtos">
+  <br>
+  <input matInput #filter (keyup)="onFilterTextChanged(filter.value)"
+         placeholder="Pesquisar por Nome">
+</mat-form-field>
+
+<table mat-table [dataSource]="produtos" class="mat-elevation-z8"
+  [hidden]="!produtos"
+  matSort (matSortChange)="loadData()"
+  [matSortActive]="defaultSortColumn"
+  [matSortDirection]="defaultSortOrder">
+
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+    <td mat-cell *matCellDef="let produto">{{produto.id}}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+    <td mat-cell *matCellDef="let produto">
+      <a [routerLink]="['/produto', produto.id]">{{produto.nome}}</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="dataInclusao">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Data Inclusão</th>
+    <td mat-cell *matCellDef="let produto">{{produto.dataInclusao}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="usuarioInclusao">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuário</th>
+    <td mat-cell *matCellDef="let produto">{{produto.usuarioInclusao}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<!-- Pagination directive -->
+<mat-paginator [hidden]="!produtos"
+               (page)="getData($event)"
+               [pageSize]="10"
+               [pageSizeOptions]="[10, 20, 50]"
+               showFirstLastButtons></mat-paginator>
+
+
