@@ -48,7 +48,7 @@
       <button type="submit" mat-flat-button color="secondary" [routerLink]="['/produtos']">
         Cancelar
       </button>
-      <button (click)="onDelete()" mat-flat-button color="secondary">
+      <button (click)="onDelete()" mat-flat-button color="secondary" [disabled]="isCadastro()">
         Deletar
       </button>
     </div>

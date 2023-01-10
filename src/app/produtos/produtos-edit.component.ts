@@ -17,6 +17,13 @@ import { ProdutosService } from './produtos.service';
 export class ProdutosEditComponent
   extends BaseFormComponent implements OnInit {
 
+isCadastro() {
+  if (this.id){
+    return false;
+  }
+  return true;
+}
+
   title?: string;
   produtos?: Produto;
   id?: number;
@@ -73,7 +80,6 @@ export class ProdutosEditComponent
           .put(produto)
           .subscribe(result => {
             console.log("Produto " + produto!.id + " Atualizado com Sucesso.");
-            // go back to cities view
             this.router.navigate(['/produtos']);
           }, error => console.error(error));
       }
@@ -82,7 +88,6 @@ export class ProdutosEditComponent
           .post(produto)
           .subscribe(result => {
             console.log("Produto " + result.id + " foi criado com sucesso.");
-
             this.router.navigate(['/produtos']);
           }, error => console.error(error));
       }
@@ -96,7 +101,6 @@ export class ProdutosEditComponent
         .delete(this.id)
         .subscribe(result => {
           console.log("Produto " + produto!.id + " Excluido com Sucesso.");
-          // go back to cities view
           this.router.navigate(['/produtos']);
         }, error => console.error(error));
     }
