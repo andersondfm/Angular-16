@@ -54,4 +54,9 @@ post(item: Produto): Observable<Produto> {
   return this.http.post<Produto>(url, item);
 }
 
+delete(id: number): Observable<Produto> {
+  var url = this.getUrl("api/produto/" + id);
+  return this.http.delete<Produto>(url);
+}
+
 }

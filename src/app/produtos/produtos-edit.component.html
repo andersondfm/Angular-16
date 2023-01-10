@@ -20,9 +20,12 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Data:</mat-label>
-      <input matInput formControlName="dataInclusao" placeholder="Inseri uma Data">
+    <mat-form-field appearance="fill">
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dataInclusao">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngFor="let error of getErrors(form.get('dataInclusao')!,
              'A Data de Inclusao')">
         {{error}}
@@ -39,12 +42,18 @@
     </mat-form-field>
 
     <div>
-      <button type="submit" mat-flat-button color="primary" type="submit" [disabled]="!form.valid">
+      <button type="submit" mat-flat-button color="primary" [disabled]="!form.valid">
         {{ this.id ? "Salvar" : "Cadastrar" }}
       </button>
       <button type="submit" mat-flat-button color="secondary" [routerLink]="['/produtos']">
         Cancelar
       </button>
+      <button (click)="onDelete()" mat-flat-button color="secondary">
+        Deletar
+      </button>
     </div>
   </form>
+
+
+  
 </div>

@@ -72,7 +72,7 @@ export class ProdutosEditComponent
         this.produtoService
           .put(produto)
           .subscribe(result => {
-            console.log("City " + produto!.id + " Atualizado com Sucesso.");
+            console.log("Produto " + produto!.id + " Atualizado com Sucesso.");
             // go back to cities view
             this.router.navigate(['/produtos']);
           }, error => console.error(error));
@@ -86,6 +86,19 @@ export class ProdutosEditComponent
             this.router.navigate(['/produtos']);
           }, error => console.error(error));
       }
+    }
+  }
+
+  onDelete(){
+    var produto = (this.id) ? this.produtos : <Produto>{};
+    if (this.id) {
+      this.produtoService
+        .delete(this.id)
+        .subscribe(result => {
+          console.log("Produto " + produto!.id + " Excluido com Sucesso.");
+          // go back to cities view
+          this.router.navigate(['/produtos']);
+        }, error => console.error(error));
     }
   }
 
