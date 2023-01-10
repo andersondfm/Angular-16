@@ -27,7 +27,7 @@ export abstract class BaseFormComponent {
           errors.push(`${displayName} ${customMessages?.[key] ?? "already exists: please choose another."}`);
           break;
         default:
-          errors.push(`${displayName} is invalid.`);
+          errors.push(`${displayName} não é valido.`);
           break;
       }
     });

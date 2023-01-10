@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-//import { HttpClient, HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntypedFormGroup, UntypedFormControl, Validators, AbstractControl, AsyncValidatorFn } from '@angular/forms';
-import { environment } from './../../environments/environment';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Produto } from './models/Produtos';
 import { BaseFormComponent } from '../base-form.component';
 import { ProdutosService } from './produtos.service';

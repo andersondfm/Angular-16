@@ -22,7 +22,6 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Data</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dataInclusao">
       <mat-hint>DD/MM/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -30,8 +29,9 @@
              'A Data de Inclusao')">
         {{error}}
       </mat-error>
+      <input matInput [matDatepicker]="picker" formControlName="dataInclusao">
     </mat-form-field>
-
+    <br>
     <mat-form-field>
       <mat-label>Usuario:</mat-label>
       <input matInput formControlName="usuarioInclusao" placeholder="Inserir um Usuario">
@@ -55,5 +55,5 @@
   </form>
 
 
-  
+
 </div>
