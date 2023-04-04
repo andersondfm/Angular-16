@@ -18,7 +18,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
   declarations: [
     AppComponent,
     ProdutosComponent,
-    ProdutosEditComponent,
+    ProdutosEditComponent
   ],
   imports: [
     BrowserModule,

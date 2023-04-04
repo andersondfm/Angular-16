@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormGroup, AbstractControl } from '@angular/forms';
+import { FormGroup, AbstractControl } from '@angular/forms';
 
 @Component({
   template: ''
@@ -7,7 +7,7 @@ import { UntypedFormGroup, AbstractControl } from '@angular/forms';
 export abstract class BaseFormComponent {
 
   // the form model
-  form!: UntypedFormGroup;
+  form!: FormGroup;
 
   getErrors(
     control: AbstractControl,

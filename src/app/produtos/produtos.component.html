@@ -7,8 +7,6 @@
  Adicionar Produto
 </button>
 
-<br>
-
 <mat-form-field [hidden]="!produtos">
   <br>
   <input matInput #filter (keyup)="onFilterTextChanged(filter.value)"
@@ -37,9 +35,9 @@
 
   <ng-container matColumnDef="dataInclusao">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Data Inclusão</th>
-    <td mat-cell *matCellDef="let produto">{{produto.dataInclusao}}</td>
+    <td mat-cell *matCellDef="let produto">{{produto.dataInclusao | date:'dd/MM/yyyy'}}</td>
   </ng-container>
-
+  
   <ng-container matColumnDef="usuarioInclusao">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuário</th>
     <td mat-cell *matCellDef="let produto">{{produto.usuarioInclusao}}</td>

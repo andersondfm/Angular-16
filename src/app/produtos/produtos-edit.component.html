@@ -3,15 +3,14 @@
   <h1>{{title}}</h1>
   <p *ngIf="this.id && !produtos"><em>Carregando...</em></p>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
     <p>
       <mat-error *ngIf="form.invalid && form.hasError('isDupeCity')">
         <strong>ERROR</strong>:
         Existe uma duplicidade.
       </mat-error>
     </p>
-
     <mat-form-field>
+      <br>
       <mat-label>Nome:</mat-label>
       <input matInput formControlName="nome" placeholder="Digite o nome do produto">
       <mat-error *ngFor="let error of getErrors(form.get('nome')!,
@@ -21,6 +20,7 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
+      <br>
       <mat-label>Data</mat-label>
       <mat-hint>DD/MM/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -33,6 +33,7 @@
     </mat-form-field>
     <br>
     <mat-form-field>
+      <br>
       <mat-label>Usuario:</mat-label>
       <input matInput formControlName="usuarioInclusao" placeholder="Inserir um Usuario">
       <mat-error *ngFor="let error of getErrors(form.get('usuarioInclusao')!,
