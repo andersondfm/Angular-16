@@ -34,7 +34,7 @@ export class LoginComponent
 
   onSubmit() {
     var loginRequest = <LoginRequest>{};
-    loginRequest.email = this.form.controls['email'].value;
+    loginRequest.nome = this.form.controls['email'].value;
     loginRequest.password = this.form.controls['password'].value;
 
     this.authService
@@ -43,7 +43,7 @@ export class LoginComponent
         console.log(result);
         this.loginResult = result;
         if (result.success) {
-          this.router.navigate(["/"]);
+          this.router.navigate(["produtos"]);
         }
       }, error => {
         console.log(error);

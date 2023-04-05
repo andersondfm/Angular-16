@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   login(item: LoginRequest): Observable<LoginResult> {
-    var url = environment.UrlApi + "api/Account/Login";
+    var url = environment.UrlApi + "api/auth/login";
     return this.http.post<LoginResult>(url, item)
       .pipe(tap(loginResult => {
         if (loginResult.success && loginResult.token) {

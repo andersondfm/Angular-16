@@ -1,24 +1,31 @@
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ProdutosService } from './produtos/produtos.service';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AngularMaterialModule } from './angular-material.module';
+
 import { AppComponent } from './app.component';
 import { ProdutosComponent } from './produtos/produtos.component';
 import { ProdutosEditComponent } from './produtos/produtos-edit.component';
+import { ProdutosService } from './produtos/produtos.service';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { AngularMaterialModule } from './angular-material.module';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { LoginComponent } from './auth/login.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ProdutosComponent,
-    ProdutosEditComponent
+    ProdutosEditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +37,9 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ProdutosService, {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}],
+  providers: [ProdutosService, 
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
