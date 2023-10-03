@@ -9,11 +9,12 @@ import { Produto } from './models/Produtos';
 })
 export class ProdutosService
 extends BaseService<Produto>{
-
+  loading = false;
   constructor(
     http: HttpClient) {
     super(http);
   }
+
 
 getData(
   pageIndex: number,
@@ -50,6 +51,8 @@ put(item: Produto): Observable<Produto> {
 }
 
 post(item: Produto): Observable<Produto> {
+  this.loading = true; // Define o estado de carregamento como verdadeiro
+
   var url = this.getUrl("api/produto");
   return this.http.post<Produto>(url, item);
 }

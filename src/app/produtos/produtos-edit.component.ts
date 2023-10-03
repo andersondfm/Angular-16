@@ -4,6 +4,8 @@ import { UntypedFormGroup, UntypedFormControl, Validators, AbstractControl, Asyn
 import { Produto } from './models/Produtos';
 import { BaseFormComponent } from '../base-form.component';
 import { ProdutosService } from './produtos.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-produtos-edit',
@@ -12,6 +14,7 @@ import { ProdutosService } from './produtos.service';
 })
 export class ProdutosEditComponent
   extends BaseFormComponent implements OnInit {
+    
 
 isCadastro() {
   if (this.id){
@@ -25,6 +28,7 @@ isCadastro() {
   id?: number;
 
   constructor(
+    private spinner: NgxSpinnerService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private produtoService: ProdutosService) {
@@ -39,10 +43,9 @@ isCadastro() {
     }, null);
 
     this.loadData();
-  }
+}
 
   loadData() {
-
     // retrieve the ID from the 'id' parameter
     var idParam = this.activatedRoute.snapshot.paramMap.get('id');
     this.id = idParam ? +idParam : 0;
@@ -51,7 +54,6 @@ isCadastro() {
       this.produtoService.get(this.id).subscribe(result => {
         this.produtos = result;
         this.title = "Editar o Produto - " + this.produtos.nome;
-
         // update the form with the city value
         this.form.patchValue(this.produtos);
 
@@ -65,6 +67,10 @@ isCadastro() {
   }
 
   onSubmit() {
+    setTimeout(() => {
+      this.spinner.show();
+      // Resto do código do onSubmit()
+    }, 0);    
     var produto = (this.id) ? this.produtos : <Produto>{};
     if (produto) {
       produto.nome = this.form.controls['nome'].value;
@@ -87,6 +93,7 @@ isCadastro() {
             this.router.navigate(['/produtos']);
           }, error => console.error(error));
       }
+      this.spinner.hide(); // Oculta o indicador de carregamento
     }
   }
 

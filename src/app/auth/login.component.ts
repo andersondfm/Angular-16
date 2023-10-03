@@ -7,10 +7,11 @@ import { AuthService } from './auth.service';
 import { LoginRequest } from './login-request';
 import { LoginResult } from './login-result';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent
   extends BaseFormComponent implements OnInit {

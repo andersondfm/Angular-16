@@ -2,3 +2,15 @@ mat-form-field {
   display: block;
   margin: 10px 0;
 }
+section {
+  display: table;
+}
+
+.login-button-container {
+  margin-top: 10px; /* Adiciona margem acima dos botões */
+}
+
+/* Estilos para o botão "Login" */
+.login-button-container button.login-button {
+  margin-right: 10px; /* Adiciona margem à direita do botão "Login" */
+}

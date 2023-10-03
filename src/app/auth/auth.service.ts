@@ -5,19 +5,24 @@ import { Observable, Subject, tap } from 'rxjs';
 import { environment } from './../../environments/environment';
 import { LoginRequest } from './login-request';
 import { LoginResult } from './login-result';
+import { ToastrService } from 'ngx-toastr';
+
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
-  private tokenKey: string = "token";
-
+  private tokenKey: string = "token"; 
   private _authStatus = new Subject<boolean>();
   public authStatus = this._authStatus.asObservable();
 
   constructor(
-    protected http: HttpClient) {
+    protected http: HttpClient,
+    private toastr: ToastrService) {
   }
 
   isAuthenticated(): boolean {
@@ -36,12 +41,29 @@ export class AuthService {
   login(item: LoginRequest): Observable<LoginResult> {
     var url = environment.UrlApi + "api/auth/login";
     return this.http.post<LoginResult>(url, item)
-      .pipe(tap(loginResult => {
-        if (loginResult.success && loginResult.token) {
-          localStorage.setItem(this.tokenKey, loginResult.token);
-          this.setAuthStatus(true);
-        }
-      }));
+      .pipe(
+        catchError((error: any) => {
+          this.showError('Usuário ou Senha Incorretos');
+          return throwError(error); // Reenvia o erro para ser tratado em outro lugar, se necessário
+        }),
+        tap(loginResult => {
+          if (loginResult && loginResult.success && loginResult.token) {
+            // Login bem-sucedido
+            localStorage.setItem(this.tokenKey, loginResult.token);
+            this.setAuthStatus(true);
+            this.showSuccess();
+          }
+        })
+      );
+  }
+  
+
+  showSuccess() {
+    this.toastr.success('Login Feito com Sucesso!', 'Seja Bem vindo!');
+  }
+
+  showError(mensagem : string) {
+    this.toastr.error(mensagem, "Error");
   }
 
   logout() {

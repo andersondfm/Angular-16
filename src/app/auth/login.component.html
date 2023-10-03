@@ -1,5 +1,5 @@
 <div class="login">
-    <h1>Login</h1>
+    <h1>Acesso ao Sistema</h1>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
   
       <p *ngIf="loginResult && !loginResult.success">
@@ -8,32 +8,29 @@
   
       <!-- Name -->
       <mat-form-field>
-        <br>
         <mat-label>Usuário:</mat-label>
         <input matInput formControlName="email" required
-               placeholder="Inserir o Login">
-        <mat-error *ngFor="let error of getErrors(form.get('email')!, 'Email')">
+               placeholder="Inserir o Login" class="large-text">
+        <mat-error *ngFor="let error of getErrors(form.get('email')!, 'Usuário')">
           {{error}}
         </mat-error>
       </mat-form-field>
   
       <!-- Lat -->
       <mat-form-field>
-        <br>
         <mat-label>Senha:</mat-label>
         <input matInput type="password" formControlName="password" required
-               placeholder="Informe a senha">
-        <mat-error *ngFor="let error of getErrors(form.get('password')!, 'Password')">
+               placeholder="Informe a senha" class="large-text">
+        <mat-error *ngFor="let error of getErrors(form.get('password')!, 'Senha')">
           {{error}}
         </mat-error>
       </mat-form-field>
-  
-      <div>
-        <button mat-flat-button color="primary" type="submit">
-          Login
+      <div class="mat-display-flex mat-align-center login-button-container">
+        <button mat-flat-button color="primary" type="submit" class="login-button">
+          Entrar
         </button>
-        <button mat-flat-button color="secondary" [routerLink]="['/']">
-          Cancel
+        <button mat-flat-button color="warn" type="button" [routerLink]="['/']" class="login-button">
+          Cancelar
         </button>
       </div>
     </form>
