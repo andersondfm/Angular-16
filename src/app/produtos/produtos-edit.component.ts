@@ -61,7 +61,6 @@ isCadastro() {
     }
     else {
       // ADD NEW MODE
-
       this.title = "Criar um novo Produto";
     }
   }
@@ -82,6 +81,7 @@ isCadastro() {
           .put(produto)
           .subscribe(result => {
             console.log("Produto " + produto!.id + " Atualizado com Sucesso.");
+            this.spinner.hide();
             this.router.navigate(['/produtos']);
           }, error => console.error(error));
       }
@@ -90,11 +90,13 @@ isCadastro() {
           .post(produto)
           .subscribe(result => {
             console.log("Produto " + result.id + " foi criado com sucesso.");
+            this.spinner.hide();
             this.router.navigate(['/produtos']);
           }, error => console.error(error));
       }
       this.spinner.hide(); // Oculta o indicador de carregamento
     }
+
   }
 
   onDelete(){
