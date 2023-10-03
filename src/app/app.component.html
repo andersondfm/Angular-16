@@ -1,3 +1,4 @@
+<ng-container *ngIf="isLoggedIn; else login">
 <mat-toolbar role="banner">
   <img
     width="30"
@@ -9,10 +10,27 @@
   <mat-menu #prod="matMenu">
     <button mat-menu-item routerLink="produtos">Lista de Produtos</button>
   </mat-menu>
+  <span class="separator"></span>
+  <a *ngIf="!isLoggedIn" mat-flat-button color="primary"
+     [routerLink]="['/login']">
+    Login
+  </a>
+  <a *ngIf="isLoggedIn" mat-flat-button color="primary"
+     (click)="onLogout()">
+    Logout
+  </a>
 </mat-toolbar>
 <router-outlet></router-outlet>
 <div class="content" role="main">
   <footer>Develop for Andersondfm 2023</footer>
 </div>
+</ng-container>
+
+<ng-template #login>
+  <div class="content" role="main">
+    <router-outlet></router-outlet>
+    <footer>Develop for Andersondfm 2023</footer>
+  </div>
+</ng-template>
 
 

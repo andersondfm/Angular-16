@@ -9,7 +9,7 @@
       <!-- Name -->
       <mat-form-field>
         <br>
-        <mat-label>Login:</mat-label>
+        <mat-label>Usuário:</mat-label>
         <input matInput formControlName="email" required
                placeholder="Inserir o Login">
         <mat-error *ngFor="let error of getErrors(form.get('email')!, 'Email')">
@@ -20,9 +20,9 @@
       <!-- Lat -->
       <mat-form-field>
         <br>
-        <mat-label>Password:</mat-label>
+        <mat-label>Senha:</mat-label>
         <input matInput type="password" formControlName="password" required
-               placeholder="Insert Password">
+               placeholder="Informe a senha">
         <mat-error *ngFor="let error of getErrors(form.get('password')!, 'Password')">
           {{error}}
         </mat-error>
